@@ -1,0 +1,39 @@
+# ── Secrets & credentials ─────────────────────────────────────────────────────
+.env
+service_account.json
+token.json
+*.json.bak
+.credentials/
+
+# ── Runtime / generated ───────────────────────────────────────────────────────
+projects/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Virtual environments ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Tests & CI cache ──────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Media assets (binaries — add your own via git-lfs if needed) ──────────────
+assets/music/**/*.mp3
+assets/sfx/**/*.mp3
+assets/music/**/*.wav
+assets/sfx/**/*.wav
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ── Claude Code internal ──────────────────────────────────────────────────────
+.claude/
