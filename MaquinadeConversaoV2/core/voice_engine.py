@@ -187,6 +187,12 @@ class VoiceEngine:
         for i, scene in enumerate(project.scenes):
             path = self.generate_scene(project, scene)
             scene.audio_path = str(path)
+            # Update actual duration so subtitle/lower-third timing is accurate
+            try:
+                from moviepy.editor import AudioFileClip as _AC
+                scene.audio_duration_sec = _AC(str(path)).duration
+            except Exception:
+                pass  # keep LLM estimate on failure
             paths.append(path)
             if progress_callback:
                 progress_callback(i + 1, total)

@@ -101,14 +101,16 @@ class ProjectManager:
             try:
                 proj = Project.model_validate_json(project_file.read_text(encoding="utf-8"))
                 summaries.append({
-                    "uuid":       proj.uuid,
-                    "title":      proj.title,
-                    "niche":      proj.niche,
-                    "status":     proj.status.value,
-                    "format":     proj.video_format.value,
-                    "scenes":     len(proj.scenes),
-                    "updated_at": proj.updated_at.isoformat(),
-                    "drive_link": proj.drive_link,
+                    "uuid":             proj.uuid,
+                    "title":            proj.title,
+                    "niche":            proj.niche,
+                    "status":           proj.status.value,
+                    "format":           proj.video_format.value,
+                    "scenes":           len(proj.scenes),
+                    "updated_at":       proj.updated_at.isoformat(),
+                    "drive_link":       proj.drive_link,
+                    "final_video_path": proj.final_video_path,
+                    "total_cost_usd":   proj.total_cost_usd,
                 })
             except Exception:
                 continue
