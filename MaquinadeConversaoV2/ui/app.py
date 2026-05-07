@@ -715,16 +715,18 @@ def _tab_historico():
         title     = p.get("title", "Sem título")
         status    = p.get("status", "—")
         updated   = p.get("updated_at", "—")[:16].replace("T", " ")
-        n_scenes  = len(p.get("scenes", []))
-        has_video = bool(p.get("final_video_path"))
+        n_scenes  = p.get("scenes", 0)          # list_all() returns count (int)
+        has_video = bool(p.get("final_video_path") and
+                         Path(p["final_video_path"]).exists())
         drive_ok  = bool(p.get("drive_link"))
 
         with st.expander(f"{'✅' if has_video else '🔄'} {title}  —  {status}  |  {updated}"):
-            col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4, col5 = st.columns(5)
             col1.metric("UUID", uuid[:8])
             col2.metric("Cenas", n_scenes)
             col3.metric("Vídeo final", "✅" if has_video else "❌")
             col4.metric("Drive", "✅" if drive_ok else "❌")
+            col5.metric("Custo USD", f"${p.get('total_cost_usd', 0):.4f}")
 
             if p.get("drive_link"):
                 st.markdown(f"🔗 [Abrir no Drive]({p['drive_link']})")
